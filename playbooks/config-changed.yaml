@@ -1,0 +1,32 @@
+---
+
+- name: Render NGINX VHOST
+  template: src=nginx.conf dest=/etc/nginx/sites-available/nZEDb
+
+- name: Link NGINX Vhost
+  file: src=/etc/nginx/sites-available/nZEDb dest=/etc/nginx/sites-enabled/nZEDb state=link
+
+- name: Unlink NGINX Default site
+  shell: unlink /etc/nginx/sites-enabled/default
+  args:
+    removes: /etc/nginx/sites-enabled/default
+
+- name: Recycle NGINX
+  service: name=nginx state=restarted
+
+- name: Clone Project
+  git: repo=https://github.com/nZEDb/nZEDb.git dest=/var/www/nZEDb
+
+
+- name: Set Ownership
+  file: path={{ item.path }} owner={{ item.owner }} group={{ item.group }} recurse=yes
+  with_items:
+    - { path: '/var/www/nZEDb/', owner: 'www-data', group: 'www-data' }
+
+- name: Set permissions for install
+  file: path={{ item.path }} mode=0777
+  with_items:
+    - { path: '/var/www/nZEDb/libs/smarty/templates_c' }
+    - { path: '/var/www/nZEDb/resources' }
+    - { path: '/var/www/nZEDb/www' }
+    - { path: '/var/lib/php5/sessions' }

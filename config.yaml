@@ -1,0 +1,26 @@
+options:
+  nntp_username:
+    type: string
+    default:
+    description: Newsgroup Server Username
+  nntp_password:
+    type: string
+    default:
+    description: Newsgroup Server Password
+  nntp_server:
+    type: string
+    default:
+    description: Newsgroup Server Address
+  nntp_port:
+    type: int
+    default: 0
+    description: Newsgroup Server Port
+  nntp_ssl_enabled:
+    type: boolean
+    default: true
+    description: Newsgroup SSL Enabled
+  nntp_socket_timeout:
+    type: int
+    default: 120
+    description: Default timeout value for Newsgroup Server
+

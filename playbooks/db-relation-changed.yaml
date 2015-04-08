@@ -1,0 +1,28 @@
+---
+
+- name: Receive Relationship Data host
+  shell: relation-get host
+  register: host
+
+- name: Receive Relationship Data database
+  shell: relation-get database
+  register: database
+
+- name: Receive Relationship Data user
+  shell: relation-get user
+  register: user
+
+- name: Receive Relationship Data password
+  shell: relation-get password
+  register: password
+
+- set_fact:
+    host: "{{ host.stdout }}"
+    database: "{{ database.stdout }}"
+    user: "{{ user.stdout }}"
+    password: "{{ password.stdout }}"
+
+- name: Render nZEDB Configuration
+  template: src=nzedbconfig.php dest=/var/www/nZEDb/www/config.php owner=www-data group=www-data mode=0644
+
+

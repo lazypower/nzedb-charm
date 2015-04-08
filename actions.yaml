@@ -1,0 +1,15 @@
+updatebin:
+    description: "Update Binaries"
+updaterelease:
+    description: "Update Releases"
+    params:
+        category:
+            description: "1 - 6"
+            type: integer
+            default: 1
+        postprocess:
+            description: "Should we try to post process?"
+            type: boolean
+            default: true
+
+    

@@ -1,0 +1,39 @@
+---
+
+    - name: Include latest PHP PPA
+      apt_repository: repo='ppa:ondrej/php5' state=present
+      tags:
+        - install
+
+    - name: Include NGINX Stable PPA
+      apt_repository: repo='ppa:nginx/stable' state=present
+      tags:
+        - install
+
+
+    - name: Install required packages.
+      apt: pkg={{ item }} state=latest update_cache=yes
+      with_items:
+        - software-properties-common
+        - python-software-properties
+        - git
+        - php5
+        - php5-cli
+        - php5-dev
+        - php5-json
+        - php-pear
+        - php5-gd
+        - php5-mysqlnd
+        - php5-curl
+        - nginx
+        - php5-fpm
+        - p7zip-full
+        - libzen0
+        - libmediainfo0
+        - lame
+        - libav-tools
+      tags:
+        - install
+        - upgrade-charm
+
+

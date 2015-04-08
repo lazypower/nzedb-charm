@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+category=`action-get category`
+postprocess=`action-get postprocess`
+
+cd /var/www/nZEDb/misc/update
+php update_releases.php $category $postprocess
