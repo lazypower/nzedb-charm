@@ -33,8 +33,5 @@
 - name: Render PHPFPM INI
   template: src=php-fpm.ini dest=/etc/php5/fpm/php.ini
 
-- name: Kick PHPFPM Process
-  template: service: name=php5-fpm state=restarted
-
 - name: copy settings.php.example to settings.php
   copy: src=/var/www/nZEDb/www/settings.php.example dest=/var/www/nZEDb/www/settings.php mode=0644 owner=www-data group=www-data
