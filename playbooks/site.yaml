@@ -18,6 +18,7 @@
         - database-relation-changed
 
 
-    - debug: msg="start"
+    - name: Open Port 80
+      shell: open-port 80
       tags:
         - start
