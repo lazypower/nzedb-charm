@@ -23,4 +23,8 @@ options:
     type: int
     default: 120
     description: Default timeout value for Newsgroup Server
+  timezone:
+    type: string
+    default: "America/NewYork"
+    description: PHP formatted TimeZone
 
