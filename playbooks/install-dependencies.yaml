@@ -36,4 +36,25 @@
         - install
         - upgrade-charm
 
+    # ffmpeg - todo: compile from source the original ffmpeg, strip avconv
+
+    - name: clone simple_yenc
+      git: repo=https://github.com/kevinlekiller/simple_php_yenc_decode dest=/tmp/simple_yenc_decode
+
+    - name: install simple_yenc
+      shell: sh ubuntu.sh
+      args:
+          chdir: /tmp/simple_yenc_decode
+
+    - name: fetch upstream unrar
+      get_url: url=http://www.rarlab.com/rar/rarlinux-x64-5.1.0.tar.gz dest=/tmp/rarlinux-x64-5.1.0.tar.gz sha256sum=8c04474201179cc3d3a4f3d1aa7bdd6ee3244479aa16371d2449cf416f882299
+
+    - name: unpack upstream unrar
+      unarchive: src=/tmp/rarlinux-x64-5.1.0.tar.gz copy=no dest=/tmp
+
+    - name: install upstream unrar
+      command: install /tmp/rar/unrar /usr/bin/unrar
+
+    - name: set execute on unrar
+      file: path=/usr/bin/unrar mode=0777
 
