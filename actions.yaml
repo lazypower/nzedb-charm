@@ -9,7 +9,7 @@ updaterelease:
             default: 1
         postprocess:
             description: "Should we try to post process?"
-            type: boolean
-            default: true
+            type: string
+            default: "true"
 
     
