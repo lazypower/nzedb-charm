@@ -17,7 +17,6 @@
 - name: Clone Project
   git: repo=https://github.com/nZEDb/nZEDb.git dest=/var/www/nZEDb
 
-
 - name: Set Ownership
   file: path={{ item.path }} owner={{ item.owner }} group={{ item.group }} recurse=yes
   with_items:
@@ -30,3 +29,9 @@
     - { path: '/var/www/nZEDb/resources' }
     - { path: '/var/www/nZEDb/www' }
     - { path: '/var/lib/php5/sessions' }
+
+- name: Render PHPFPM INI
+  template: src=php-fpm.ini dest=/etc/php5/fpm/php.ini
+
+- name: copy settings.php.example to settings.php
+  copy: src=/var/www/nZEDb/www/settings.php.example dest=/var/www/nZEDb/www/settings.php mode=0644 owner=www-data group=www-data
